@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head>
+  <title>AjaxTest</title>
+</h:head>
+
+<h:body>
+<ui:composition template="WEB-INF/templates/GeneralManagerTemplate.xhtml">
+	<ui:define name="content">
+	
+	<div class="content">
+		<h:form>
+			<h:panelGrid class="main-panel" columns="2">
+		
+				<span class="label">Fish Type</span>
+				<h:selectOneMenu id="fType" class="input-style"
+					value="#{generalManager.fishTypeId}" > 
+				    <f:selectItems value="#{generalManager.fishTypeValues}" />
+				</h:selectOneMenu> <br/>
+				<h:message for="fType" style="color:red" />
+			
+				<span class="label">Purchase Price</span>
+				<h:inputText id="pPrice" class="input-style" 
+					value="#{generalManager.fishItem.purchasePrice}" required="true" 
+					requiredMessage = "Please, specify the price">
+				</h:inputText> <br/>
+				<h:message for="pPrice" style="color:red" />
+				
+				<span class="label">Purchase Weight</span>
+				<h:inputText id="pWeight" class="input-style"
+					value="#{generalManager.fishItem.purchaseWeight}" required="true" 
+					requiredMessage = "Please, specify the weight">
+				</h:inputText> <br/>
+				<h:message for="pWeight" style="color:red" />
+			
+				<div class="centerHeader">
+					<h:commandButton class="button" value="Add" 
+						action="#{generalManager.addItem()}" />
+				</div>
+			</h:panelGrid>
+		</h:form>
+	</div>
+</ui:define>
+</ui:composition>
+</h:body>
+</html>

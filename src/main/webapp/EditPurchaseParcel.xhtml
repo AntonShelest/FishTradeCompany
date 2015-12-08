@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head>
+  <title>AjaxTest</title>
+</h:head>
+
+<h:body>
+<ui:composition template="WEB-INF/templates/GeneralManagerTemplate.xhtml">
+	<ui:define name="content">
+	
+	<div class="centerHeader">
+		<h2>Edit Purchase Parcel</h2> 
+	</div>
+
+    <h:form class="main-container">			
+		<div class="centerHeader">
+			<h:commandButton class="button" value="Add Item" 
+				action="NewFishItem" />
+		</div>
+			
+		<h:dataTable value="#{generalManager.purchaseParcel.fishItems}" var="fishItem"
+			styleClass="table" headerClass="tableHeader"
+			rowClasses="tableOddRow, tableEvenRow">
+			<h:column>
+				<f:facet name="header">Id</f:facet> 
+				#{fishItem.id} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Fish Type</f:facet> 
+				#{fishItem.fishType.name} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Purchase Price</f:facet> 
+				#{fishItem.purchasePrice} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Purchase Weight</f:facet> 
+				#{fishItem.purchaseWeight} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Actual Price</f:facet> 
+				<h:inputText value="#{fishItem.price}" style="width:50px;"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Actual Weight</f:facet> 
+				#{fishItem.weight}
+			</h:column>
+			<h:column>
+				<f:facet name="header"> </f:facet>
+				<h:commandLink  action="#{generalManager.removeItem(fishItem)}" >
+					<h:graphicImage value="resources/image/remove-icon.png"
+						 height="16" width="16" title="Remove"/>
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+		
+		<div class="centerHeader">
+			<h:commandButton class="button" value="Save"
+				action="#{generalManager.registerParcel}" />
+		</div>
+	</h:form>	
+</ui:define>
+</ui:composition>
+</h:body>
+</html>

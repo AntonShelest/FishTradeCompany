@@ -1,0 +1,18 @@
+----------------------------------------------------------------
+Fri Dec 04 19:27:52 EET 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0151-6dff-9eec-00000721c580 
+on database directory D:\JavaEE\FTC with class loader WebappClassLoader
+  context: GoodFish
+  delegate: false
+----------> Parent Classloader:
+java.net.URLClassLoader@2626b418
+ 
+Loaded from file:/D:/Нужное/Proga/apache-tomcat-8.0.28/wtpwebapps/GoodFish/WEB-INF/lib/derby-10.10.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_45-b14
+user.dir=D:\JavaEE\GoodFish
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

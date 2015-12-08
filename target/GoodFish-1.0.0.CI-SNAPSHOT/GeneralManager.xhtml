@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head>
+  <title>AjaxTest</title>
+</h:head>
+
+<h:body>
+<ui:composition template="WEB-INF/templates/GeneralManagerTemplate.xhtml">
+	<ui:define name="content">
+	
+	<div class="centerHeader">
+		<h2>Registered Parcels</h2> 
+	</div>
+	#{generalManager.refreshList()}
+    <h:form class="main-container">
+		<h:dataTable value="#{generalManager.parcels}" var="parcel"
+			styleClass="table" headerClass="tableHeader"
+			rowClasses="tableOddRow, tableEvenRow">
+			<h:column>
+				<f:facet name="header">Id</f:facet> 
+				#{parcel.id} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Ship</f:facet> 
+				#{parcel.ship} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Created</f:facet> 
+				#{parcel.created} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Arrived</f:facet> 
+				#{parcel.arrived} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">For Sale</f:facet> 
+				#{parcel.forSale} 
+			</h:column>
+			<h:column>
+				<f:facet name="header"> </f:facet>
+				<h:commandLink  action="#{generalManager.editParcel(parcel)}" >
+					<h:graphicImage value="resources/image/edit-icon.png" 
+						height="16" width="16" title="Edit"/>
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+		
+		<div class="centerHeader">
+			<h:commandButton class="button" value="Add Parcel" 
+				action="NewPurchaseParcel" />
+		</div>
+	</h:form>
+	
+	</ui:define>
+</ui:composition>
+</h:body>
+</html>

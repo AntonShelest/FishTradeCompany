@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<ui:composition template="WEB-INF/templates/AccountantTemplate.xhtml">
+<ui:define name="content">
+	
+	<div class="centerHeader">
+		<h2>Payments</h2> 
+	</div>
+	
+    #{accountant.refreshPayments()}
+    <h:form class="main-container">
+		<h:dataTable value="#{accountant.payments}" 
+			var="payment"
+			styleClass="table" headerClass="tableHeader"
+			rowClasses="tableOddRow, tableEvenRow">
+			<h:column>
+				<f:facet name="header">Id</f:facet> 
+				#{payment.id} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Sale Parcel Id</f:facet> 
+				#{payment.saleParcel.id} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Amount</f:facet> 
+				<h:outputText value="#{payment.amount}">
+					<f:convertNumber groupingUsed="true" minFractionDigits="2"/>
+				</h:outputText> 
+				UAH
+			</h:column>
+			<h:column>
+				<f:facet name="header">Payment timestamp</f:facet> 
+				<h:outputText value="#{payment.tstamp}">
+					<f:convertDateTime pattern="dd.MM.yyyy"/>
+				</h:outputText> 
+			</h:column>
+		</h:dataTable>
+		<div class="centerHeader">
+			<h:commandButton class="button" value="Add payment" 
+				action="NewPayment" />
+		</div>
+	</h:form>
+</ui:define>
+</ui:composition>	
+</html>

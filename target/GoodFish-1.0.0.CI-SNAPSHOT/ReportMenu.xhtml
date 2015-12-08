@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head>
+  <title>AjaxTest</title>
+</h:head>
+
+<h:body>
+<ui:composition template="WEB-INF/templates/GeneralManagerTemplate.xhtml">
+	<ui:define name="content">
+	
+	<div class="centerHeader">
+		<h2>Please, specify report parameters</h2> 
+	</div>
+		<h:form>
+		    <h:panelGrid class="main-panel">
+		    
+	            <h:inputText id ="bDate" value="#{generalManager.reportBeginDate}">
+	            	<f:convertDateTime pattern="dd.MM.yyyy" type="date" timeZone="GMT-2"/>
+	            </h:inputText>
+	            <h:inputText id ="eDate" value="#{generalManager.reportEndDate}">
+	            	<f:convertDateTime pattern="dd.MM.yyyy" type="date" timeZone="GMT-2"/>
+	            </h:inputText>
+					
+				<h:selectOneRadio class="label" value="#{generalManager.reportType}">
+					<f:selectItem itemValue="byPeriod" itemLabel="Report By period"/>
+					<f:selectItem itemValue="byDay" itemLabel="Report By day"/>
+					<f:selectItem itemValue="byFish" itemLabel="Report By fish"/>
+				</h:selectOneRadio>
+				
+				<div class="centerHeader">	
+					<h:commandButton class="button" value="Generate" 
+						action="#{generalManager.generateReport()}" />
+				</div>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</h:body>
+</html>

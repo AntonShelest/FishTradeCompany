@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+<ui:composition template="WEB-INF/templates/Template.xhtml">
+	<ui:define name="content">
+		
+  	<div class="feature">
+		<div class="feature-inner">
+			<h1>#{msgs.loginGreeting}</h1>
+		</div>
+	</div>
+	
+	<div class="blankSection"></div>
+	
+	<div class="blankSection">	
+		<h:outputText value="#{msgs.failedLogon}" class="errorMessage" rendered="#{userBean.loginFailed}"/>
+	</div>
+	
+	<h:form>
+		<h:panelGrid class="main-panel" columns="1">
+			<h:inputText id="login" class="input-style" value="#{userBean.user.login}" required="true"
+				requiredMessage="#{msgs.requiredLogin}"
+				validatorMessage="#{msgs.shortLogin}">
+				<f:validateLength minimum="3" maximum="30" /> 
+			</h:inputText>
+			<h:message for="login" class="errorMessage"/>
+			
+			<h:inputSecret id="password" class="input-style" value="#{userBean.user.password}" required="true"
+				requiredMessage="#{msgs.requiredPassword}"
+				validatorMessage="#{msgs.shortPassword}">
+				<f:validateLength minimum="5" maximum="30" /> 
+			</h:inputSecret>
+			<h:message for="password" class="errorMessage"/>
+			
+			<h:commandButton class="button" value="Login" action="#{userBean.login}" /> 
+				
+			<div style="text-align:center">
+				<h:commandLink class="button" value="Register" action="Register" margin="auto"/>
+			</div>
+		</h:panelGrid>
+	</h:form> 
+	
+	</ui:define>
+</ui:composition>
+</h:body>
+</html>

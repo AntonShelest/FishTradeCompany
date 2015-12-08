@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+<ui:composition template="WEB-INF/templates/Template.xhtml">
+<ui:define name="content">
+		
+	<div class="feature">
+		<div class="feature-inner">
+			<h1>#{msgs.loginGreeting}</h1>
+		</div>
+	</div>
+	
+	<div class="redirectIcon">
+		<h:form>
+			<h:commandLink action="Login" >
+				<h:graphicImage styleClass="icon" value="resources/image/login-button-md.png"
+					height="50" width="50" margin="10" title="Login"/>
+			</h:commandLink>
+		</h:form>
+	</div>
+	
+	<div class="blankSection">	
+		<h:outputText value="Such user already exist" class="errorMessage" rendered="#{userBean.registerFailed}"/>
+	</div>
+	
+	<div class="content">
+		<h:form>
+			<h:panelGrid class="main-panel" columns="2">
+				
+				<span class="label">Login</span>
+				<h:inputText id="login" class="input-style" value="#{userBean.user.login}" 
+					required="true"
+					requiredMessage="#{msgs.requiredLogin}"
+					validatorMessage="#{msgs.shortLogin}">
+					<f:validateLength minimum="3" maximum="30" /> 
+				</h:inputText> <br/>
+				<h:message for="login" class="errorMessage"/>
+				
+				<span class="label">Name</span>
+				<h:inputText id="name" class="input-style" value="#{userBean.user.name}"
+					required="true"
+					requiredMessage="Need name field"
+					validatorMessage="too short name">
+					<f:validateLength minimum="3" maximum="30" /> 
+				</h:inputText> <br/>
+				<h:message for="name" class="errorMessage"/>
+				
+				<span class="label">Email</span>
+				<h:inputText id="email" class="input-style" value="#{userBean.user.email}" 
+					required="true"
+					requiredMessage="Need email field"
+					validatorMessage="too short email">
+					<f:validateLength minimum="3" maximum="30" /> 
+				</h:inputText> <br/>
+				<h:message for="email" class="errorMessage"/>
+				
+				<span class="label">TIN</span>
+				<h:inputText id="TIN" class="input-style" value="#{userBean.user.TIN}" 
+					required="false"
+					validatorMessage="invalid length of TIN">
+					<f:validateLength minimum="10" maximum="12" /> 
+				</h:inputText> <br/>
+				<h:message for="TIN" class="errorMessage"/>
+	
+				<span class="label">Address</span>
+				<h:inputText id="address" class="input-style" value="#{userBean.user.address}" 
+					required="false"
+					validatorMessage="invalid length of address">
+					<f:validateLength minimum="5" maximum="300" /> 
+				</h:inputText> <br/>
+				<h:message for="address" class="errorMessage"/>
+	
+				<span class="label">Password</span>
+				<h:inputSecret id="password" class="input-style" value="#{userBean.user.password}" 
+					required="true"
+					requiredMessage="#{msgs.requiredPassword}"
+					validatorMessage="#{msgs.shortPassword}">
+					<f:validateLength minimum="5" maximum="30" /> 
+				</h:inputSecret> <br/>
+				<h:message for="password" class="errorMessage"/> <br/> 
+				
+				<h:commandButton class="button" value="Register" action="#{userBean.register}" /> 
+
+			</h:panelGrid>
+		</h:form>
+	</div>
+</ui:define>
+</ui:composition>
+</h:body>
+</html>

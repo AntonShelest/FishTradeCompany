@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<ui:composition template="WEB-INF/templates/ColdStoreManagerTemplate.xhtml">
+<ui:define name="content">
+	
+	<div class="centerHeader">
+		<h2>Parcels for shipment</h2> 
+	</div>
+	
+    #{coldStoreManager.refreshParcelsToShip()}
+    <h:form class="main-container">
+		<h:dataTable value="#{coldStoreManager.parcelsToShip}" 
+			var="parcel"
+			styleClass="table" headerClass="tableHeader"
+			rowClasses="tableOddRow, tableEvenRow">
+			<h:column>
+				<f:facet name="header">Parcel Id</f:facet> 
+				#{parcel.id} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">User Id</f:facet> 
+				#{parcel.user.id} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">User Name</f:facet> 
+				#{parcel.user.name} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Submitted</f:facet> 
+				#{parcel.submitted} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Shipped</f:facet> 
+				#{parcel.shipped} 
+			</h:column>
+			<h:column>
+				<f:facet name="header"> </f:facet>
+				<h:commandLink  action="#{coldStoreManager.shipParcel(parcel)}" >
+					<h:graphicImage value="resources/image/register.png" height="40" width="40" title="Ship"/>
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</ui:define>
+</ui:composition>	
+</html>

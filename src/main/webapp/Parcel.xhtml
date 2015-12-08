@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:body>
+<ui:composition template="WEB-INF/templates/Template.xhtml">
+	<ui:define name="content">
+	    <div class="feature">
+			<div class="feature-inner">
+				<h1>Hello, Dear #{customer.user.name}!</h1>
+			</div>
+		</div>
+			
+		<div>
+			<div class="redirectIcon" style="float:left; position:relative">
+				<h:form id="totals">
+					<h:commandLink action="Parcel" style="position:relative;">
+			  				<h:graphicImage value="resources/image/cart-icon.jpg" 
+			  					height="100" width="100" margin="10" 
+			  					title="Shopping cart">
+			  				</h:graphicImage>
+					</h:commandLink>
+						<h4 style="position:absolute; left:30px; top:100px;">
+						<h:outputText value="#{customer.getTotalPrice()}">
+							<f:convertNumber groupingUsed="true" minFractionDigits="2"/>
+						</h:outputText> 
+						UAH
+					</h4>
+					
+					<h4 style="position:absolute; left:30px; top:120px;">
+						<h:outputText value="#{customer.getTotalWeight()}">
+							<f:convertNumber groupingUsed="true" minFractionDigits="2"/>
+						</h:outputText> 
+						tones
+					</h4>
+				</h:form>
+			</div>
+			
+			<div class="redirectIcon" style="float:right">
+				<h:form>
+					<h:commandLink action="#{customer.logout()}" >
+						<h:graphicImage styleClass="icon" value="resources/image/exit.gif"
+							height="50" width="50" margin="10" title="Exit"/>
+					</h:commandLink>
+				</h:form>
+			</div>
+		</div>	
+		
+		<div class="blankSection"></div>
+		<div class="blankSection"></div>	
+		
+		<div class="main-container">
+			<h:panelGroup id="table">
+			<h:dataTable value="#{customer.parcel.saleParcelItems}" 
+					 var="saleParcelItem"
+					 styleClass="table" 
+					 headerClass="tableHeader" 
+					 rowClasses="tableOddRow, tableEvenRow"> 
+			
+				<h:column> 
+					<f:facet name="header">Fish Type</f:facet> 
+					#{saleParcelItem.fishItem.fishType.name} 
+				</h:column>
+				
+				<h:column> 
+					<f:facet name="header">Price</f:facet> 
+					<h:outputText value="#{saleParcelItem.price}">
+						<f:convertNumber groupingUsed="true" minFractionDigits="2"/>
+					</h:outputText> 
+					UAH
+				</h:column>
+				
+				<h:column> 
+					<f:facet name="header">Weight</f:facet> 
+					<h:outputText value="#{saleParcelItem.weight} ">
+						<f:convertNumber groupingUsed="true" minFractionDigits="2"/>
+					</h:outputText> 
+					tones
+				</h:column>
+				
+				<h:column> 
+					<f:facet name="header">Remove</f:facet>
+					<h:form>
+					<h:commandLink  action="#{customer.removeItem(saleParcelItem)}" >
+						<h:graphicImage value="resources/image/remove-icon.png" 
+							height="16" width="16" title="Remove"/>
+						<f:ajax execute="@form" render=":totals :table"/>
+					</h:commandLink>
+					</h:form>
+				</h:column>
+			
+			</h:dataTable>
+			</h:panelGroup>
+		</div>
+		
+		<div class="centerHeader">
+			<h:form>
+				<h:commandButton class="button" value="Return"
+					action="Customer" />
+			</h:form>
+		</div>
+		
+	</ui:define>
+</ui:composition>
+</h:body>
+</html>

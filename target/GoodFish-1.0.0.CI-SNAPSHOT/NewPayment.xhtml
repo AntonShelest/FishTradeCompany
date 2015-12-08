@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head>
+  <title>AjaxTest</title>
+</h:head>
+
+<h:body>
+<ui:composition template="WEB-INF/templates/AccountantTemplate.xhtml">
+	<ui:define name="content">
+	
+	<div class="content">
+		<h:form>
+			<h:panelGrid class="main-panel" columns="2">
+		
+				<span class="label">Sale Parcel</span>
+				<h:selectOneMenu id="sParcel" class="input-style"
+					value="#{accountant.saleParcelId}" > 
+				    <f:selectItems value="#{accountant.saleParcels}" />
+				</h:selectOneMenu> <br/>
+				<h:message for="sParcel" style="color:red" />
+			
+				<span class="label">Amount</span>
+				<h:inputText id="pAmount" class="input-style" 
+					value="#{accountant.paymentAmount}" required="true" 
+					requiredMessage = "Please, specify payment amount">
+				</h:inputText> <br/>
+				<h:message for="pAmount" style="color:red" />
+			
+				<div class="centerHeader">
+					<h:commandButton class="button" value="Add" 
+						action="#{accountant.addPayment()}" />
+				</div>
+			</h:panelGrid>
+		</h:form>
+	</div>
+</ui:define>
+</ui:composition>
+</h:body>
+</html>

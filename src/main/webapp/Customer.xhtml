@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head>
+  <title>AjaxTest</title>
+</h:head>
+
+<h:body>
+<ui:composition template="WEB-INF/templates/Template.xhtml">
+	<ui:define name="content">
+	    <div class="feature">
+			<div class="feature-inner">
+				<h1>Hello, Dear #{customer.user.name}!</h1>
+			</div>
+		</div>
+		
+		<div>
+			<div class="redirectIcon" style="float:left; position:relative">
+				<h:form id="totals">
+					<h:commandLink action="Parcel" style="position:relative;">
+			  				<h:graphicImage value="resources/image/cart-icon.jpg" 
+			  					height="100" width="100" margin="10" 
+			  					title="Shopping cart">
+			  				</h:graphicImage>
+					</h:commandLink>
+					<h4 style="position:absolute; left:30px; top:100px;">
+						<h:outputText value="#{customer.getTotalPrice()}">
+							<f:convertNumber groupingUsed="true" minFractionDigits="2"/>
+						</h:outputText> 
+						UAH
+					</h4>
+					
+					<h4 style="position:absolute; left:30px; top:120px;">
+						<h:outputText value="#{customer.getTotalWeight()}">
+							<f:convertNumber groupingUsed="true" minFractionDigits="2"/>
+						</h:outputText> 
+						tones
+					</h4>
+				</h:form>
+			</div>
+			
+			<div class="redirectIcon" style="float:right">
+				<h:form>
+					<h:commandLink action="#{customer.logout()}" >
+						<h:graphicImage styleClass="icon" value="resources/image/exit.gif"
+							height="50" width="50" margin="10" title="Exit"/>
+					</h:commandLink>
+				</h:form>
+			</div>
+		</div>	
+		
+		<div class="blankSection"></div>
+		<div class="blankSection"></div>
+		
+		
+		<table class="main-container">
+			<tr>
+			<td style="border: solid 1px black; padding:0 0; border-right:none;">
+			<h:dataTable id="table" value="#{customer.fishItems}" 
+					 var="fishItem"
+					 styleClass="table" 
+					 headerClass="tableHeader" 
+					 rowClasses="tableOddRow, tableEvenRow"> 
+			
+				<h:column> 
+					<f:facet name="header">Fish Type</f:facet> 
+					#{fishItem.fishType.name} 
+				</h:column>
+				
+				<h:column> 
+					<f:facet name="header">Price</f:facet> 
+					<h:outputText value="#{fishItem.price}">
+						<f:convertNumber groupingUsed="true" minFractionDigits="2"/>
+					</h:outputText> 
+					UAH
+				</h:column>
+					 
+				<h:column> 
+					<f:facet name="header">Total Weight</f:facet> 
+					<h:outputText value="#{fishItem.weight}">
+						<f:convertNumber groupingUsed="true" minFractionDigits="2"/>
+					</h:outputText>
+					tones 
+				</h:column>
+				
+			</h:dataTable>
+			</td>
+			
+			<td style="border: solid 1px black; border-left:none;">
+			<h:dataTable value="#{customer.fishItems}" 
+					 var="fishItem"
+					 styleClass="table" 
+					 headerClass="tableHeader" 
+					 rowClasses="tableOddRow, tableEvenRow">
+					 	
+				<h:column> 
+					<f:facet name="header">Add</f:facet>
+					<h:form>
+					<h:inputText value="#{customer.itemWeight}" style="height:18px; width:40px;"/>
+					<h:commandLink  action="#{customer.addItem(fishItem)}" >
+						<h:graphicImage value="resources/image/edit-icon.png" 
+							height="15" width="15" style="margin:auto;" title="Add"/>
+						<f:ajax execute="@form" render=":table :totals"/>
+					</h:commandLink>
+					</h:form>
+				</h:column>
+			
+			</h:dataTable>
+			</td>
+			</tr>
+		</table>
+		
+		<h:form>
+			<div class="centerHeader">
+				<h:commandButton class="button" value="Submit"
+					action="#{customer.submit}" />
+			</div>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>
+</h:body>
+</html>

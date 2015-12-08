@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head>
+  <title>AjaxTest</title>
+</h:head>
+
+<h:body>
+<ui:composition template="WEB-INF/templates/ColdStoreManagerTemplate.xhtml">
+	<ui:define name="content">
+	
+	<div class="centerHeader">
+		<h2>Edit Purchase Parcel</h2> 
+	</div>
+	
+    <h:form class="main-container">
+		<h:panelGrid columns="1" width="100%">
+			<h:dataTable value="#{coldStoreManager.purchaseParcel.fishItems}" 
+				var="fishItem"
+				styleClass="table" headerClass="tableHeader"
+				rowClasses="tableOddRow, tableEvenRow">
+				<h:column>
+					<f:facet name="header">Id</f:facet> 
+					#{fishItem.id} 
+				</h:column>
+				<h:column>
+					<f:facet name="header">Fish Type</f:facet> 
+					#{fishItem.fishType.name} 
+				</h:column>
+				<h:column>
+					<f:facet name="header">Purchase Price</f:facet> 
+					#{fishItem.purchasePrice} 
+				</h:column>
+				<h:column>
+					<f:facet name="header">Purchase Weight</f:facet> 
+					#{fishItem.purchaseWeight} 
+				</h:column>
+				<h:column>
+					<f:facet name="header">Actual Price</f:facet> 
+					#{fishItem.price}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Actual Weight</f:facet> 
+					<h:inputText value="#{fishItem.weight}" style="width:50px;"/>
+				</h:column>
+				
+				
+			</h:dataTable>
+			
+		</h:panelGrid>
+		<div class="centerHeader">
+			<h:commandButton class="button" value="Register Arrival	"
+				action="#{coldStoreManager.updateParcel()}" />
+		</div>
+	</h:form>
+	
+	</ui:define>
+</ui:composition>
+</h:body>
+</html>

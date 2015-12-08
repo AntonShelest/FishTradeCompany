@@ -1,0 +1,155 @@
+@CHARSET "UTF-8";
+
+@bg-color: "blue";
+
+html, #page { padding:0; margin:0;}
+body { margin:0; padding:0; width:100%; color:#959595; font:normal 12px/2.0em Sans-Serif;} 
+h1, h2, h3, h4, h5, h6 {color:darkgreen;}
+#page { background:#fff;}
+#header, #footer, #top-nav, #content, #content #contentbar, #content #sidebar { margin:0; padding:0;}
+			
+/* Logo */
+#logo { padding:0; width:auto; float:left;}
+#logo h1 a, h1 a:hover { color:darkgreen; text-decoration:none;}
+#logo h1 span { color:#BCCE98;}
+
+/* Header */
+#header { background:#fff; }
+#header-inner { margin:0 auto; padding:0;}
+
+/* Feature */
+.feature { background:green;padding:18px;}
+.feature-inner { margin:auto;width:}
+.feature-inner h1 {color:#DAE9BC;font-size:32px;}
+
+/* Menu */
+#top-nav { margin:0 auto; padding:0px 0 0; height:37px; float:right;}
+#top-nav ul { list-style:none; padding:0; height:37px; float:left;}
+#top-nav ul li { margin:0; padding:0 0 0 8px; float:left;}
+#top-nav ul li a { display:block; margin:0; padding:8px 20px; color:green; text-decoration:none;}
+#top-nav ul li.active a, #top-nav ul li a:hover { color:#BCCE98;}
+
+/* Icons */
+.icon{
+	height:80px;
+	width:80px;
+	padding:5px 5px;
+}
+
+.redirectIcon {
+	text-align:right;
+	padding: 20px 20px;
+}
+
+.top-list { margin:0 auto; padding:0px 0 0; height:37px; float:center;}
+.top-list ul { list-style:none; padding:0; height:37px; float:left;}
+.top-list ul li { margin:0; padding:0 0 0 8px; float:left;}
+
+/* Headers */
+
+.centerHeader{
+	text-align:center;
+	padding:10px 10px;
+	margin:0 auto;
+	width:200px;
+}
+
+.errorMessage{
+	float:center;
+	margin: auto;
+	color:red;
+	font-size:8px;
+}
+
+/* Content tables */
+
+.table{
+	border-collapse:collapse; 
+	border:1px solid darkGreen; 
+	margin:auto;
+	width:100%;
+}
+
+.main-container{
+	width:70%; 
+	border-collapse:collapse;
+	margin:auto;
+}
+
+.main-panel{
+	background:#eaeaea;
+	margin:auto; 	
+	border-radius:6px; 
+	text-align:center;
+	padding:15px 15px;
+	border: solid 2px #BCCE98;
+  	box-shadow: inset 0 0 0 1px white;
+  	transition: box-shadow 0.3s, border 0.3s;
+  	border-radius: 6px;
+}
+
+ .tableHeader{ 
+	text-align:center;
+	color:darkGreen;
+	background:none repeat scroll 0 0 #BCCE98; 
+	border-bottom:1px solid darkGreen; 
+	padding:2px; 
+} 
+
+.tableOddRow{ 
+	text-align:center; 
+	color:darkGreen;
+	background:none repeat scroll 0 0 #FFFFFFF; 
+	min-height: 35px;
+}
+
+.tableEvenRow{ 
+	text-align:center; 
+	color:darkGreen;
+	background:none repeat scroll 0 0 #BCCE98; 
+}
+
+.button{
+	color: darkGreen; 
+	font-weight: bold; 
+	font-size: 100%; 
+	text-transform: uppercase;
+	width:100px;
+	padding: 5px 5px;
+	text-align:center;
+	border-radius: 6px;
+	background:#DAE9BC;
+}
+
+.input-style {
+  padding: 5px 5px;
+  border: solid 2px #BCCE98;
+  box-shadow: inset 0 0 0 1px white;
+  transition: box-shadow 0.3s, border 0.3s;
+  border-radius: 6px;
+  width:100px;
+}
+
+.label{
+	color:darkGreen;
+	text-align:left;
+	margin:0 auto;
+	float:left;
+	
+}
+
+/* Footerblurb */
+#footerblurb { background:#DAE9BC;color:green;}
+#footerblurb-inner { margin:0 auto; width:100%; padding:24px;}
+#footerblurb .column { margin:0; text-align:justify; float:left; width:25%;padding:0px 24px;}
+
+/* Footer */
+#footer { background:#fff;}
+#footer-inner { margin:auto; text-align:center; padding:12px;}
+#footer a {color:green;text-decoration:none;}
+
+/* Clear both sides to assist with div alignment  */
+.clr { clear:both; padding:0; margin:0; width:100%; font-size:0px; line-height:0px;}
+
+/* Dummy background sections */
+.blankSection{background: @bg-color;padding:30px; text-align:center; float:center;}

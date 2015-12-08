@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head>
+  <title>AjaxTest</title>
+</h:head>
+
+<h:body>
+<ui:composition template="WEB-INF/templates/GeneralManagerTemplate.xhtml">
+	<ui:define name="content">
+	
+	<div class="centerHeader">
+		<h2>Report by date</h2> 
+	</div>
+
+	<h:form class="main-container">
+		<h:panelGrid columns="1" width="100%">
+			<h:dataTable value="#{generalManager.reportByDateList}" 
+				var="reportByDateItem"
+				styleClass="table" headerClass="tableHeader"
+				rowClasses="tableOddRow, tableEvenRow">
+				<h:column>
+					<f:facet name="header">From</f:facet>  
+					<h:outputText value="#{reportByDateItem.beginDTime}">
+				</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">To</f:facet> 					
+					<h:outputText value="#{reportByDateItem.endDTime} ">
+				</h:outputText>
+				</h:column>
+				<h:column>
+				<f:facet name="header">Sum</f:facet> 
+				<h:outputText value="#{reportByDateItem.sum}">
+					<f:convertNumber groupingUsed="true" minFractionDigits="2"/>
+				</h:outputText>
+				UAH
+				</h:column>
+				<h:column>
+					<f:facet name="header">Weight</f:facet> 
+					<h:outputText value="#{reportByDateItem.weight} ">
+					<f:convertNumber groupingUsed="true" minFractionDigits="2"/>
+					</h:outputText>
+					tones
+				</h:column>
+				<h:column>
+					<f:facet name="header">Income</f:facet> 
+					<h:outputText value="#{reportByDateItem.income}">
+					<f:convertNumber groupingUsed="true" minFractionDigits="2"/>
+					</h:outputText>
+					UAH
+				</h:column>
+			</h:dataTable>			
+		</h:panelGrid>
+	</h:form>
+
+	</ui:define>
+</ui:composition>
+</h:body>
+</html>

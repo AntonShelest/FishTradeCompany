@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head>
+  <title>AjaxTest</title>
+</h:head>
+
+<h:body>
+<ui:composition template="WEB-INF/templates/GeneralManagerTemplate.xhtml">
+	<ui:define name="content">
+	
+	<div class="centerHeader">
+		<h2>Current customers</h2> 
+	</div>
+	
+	    <h:form class="main-container">
+			<h:dataTable value="#{generalManager.customers}" var="cust"
+				styleClass="table" headerClass="tableHeader"
+				rowClasses="tableOddRow, tableEvenRow">
+				<h:column>
+					<f:facet name="header">Id</f:facet> 
+					#{cust.id} 
+				</h:column>
+				<h:column>
+					<f:facet name="header">Name</f:facet> 
+					#{cust.name} 
+				</h:column>
+				<h:column>
+					<f:facet name="header">Address</f:facet> 
+					#{cust.address} 
+				</h:column>
+				<h:column>
+					<f:facet name="header">Current pr. percent</f:facet> 
+					#{cust.prepaymentPercent} 
+				</h:column>
+				<h:column>
+					<f:facet name="header">Change pr. percent</f:facet> 
+					<h:inputText id="prPercent" class="input-style"
+					 	value="cust.prepaymentPercent"
+						validatorMessage="Must be between 0 and 100">
+						<f:validateDoubleRange minimum="0.00" maximum="100.00" />
+					</h:inputText>
+				</h:column>
+				<h:column>
+					<h:message for="prPercent" style="color:red" />
+				</h:column>
+				<h:column>
+					<div class="centerHeader">
+						<h:commandButton class="button" value="Save" 
+							action="#{generalManager.savePrepaymentInfo(cust)}" />
+					</div>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</h:body>
+</html>

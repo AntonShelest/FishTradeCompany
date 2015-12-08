@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<ui:composition template="WEB-INF/templates/AccountantTemplate.xhtml">
+<ui:define name="content">
+	
+	<div class="centerHeader">
+		<h2>Registered Parcels</h2> 
+	</div>
+	
+    <h:form class="main-container">
+    #{accountant.refreshList()}
+		<h:dataTable value="#{accountant.parcels}" 
+			var="parcel"
+			styleClass="table" headerClass="tableHeader"
+			rowClasses="tableOddRow, tableEvenRow">
+			<h:column>
+				#{accountant.refreshTableRow(parcel)}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Parcel Id</f:facet> 
+				#{parcel.id} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">User Id</f:facet> 
+				#{parcel.user.id} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">User Name</f:facet> 
+				#{parcel.user.name} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Submitted</f:facet> 
+				<h:outputText value="#{parcel.submitted}">
+					<f:convertDateTime pattern="dd.MM.yyyy"/>
+				</h:outputText>
+				
+			</h:column>
+			<h:column>
+				<f:facet name="header">Need to pay</f:facet> 
+				<h:outputText value="#{accountant.needToPay}">
+					<f:convertNumber groupingUsed="true" minFractionDigits="2"/>
+				</h:outputText>
+				UAH
+			</h:column>
+			<h:column>
+				<f:facet name="header">Already payed</f:facet> 
+				<h:outputText value="#{accountant.alreadyPayed}">
+					<f:convertNumber groupingUsed="true" minFractionDigits="2"/>
+				</h:outputText>
+				UAH
+			</h:column>
+			<h:column>
+				<f:facet name="header">Status</f:facet> 
+				<h:outputText value="Submitted" rendered="#{parcel.status eq 'S'}"/>
+				<h:outputText value="Ready for ship" rendered="#{parcel.status eq 'R'}"/>
+				<h:outputText value="Shipped" rendered="#{parcel.status eq 'H'}"/>
+				<h:outputText value="Payed" rendered="#{parcel.status eq 'P'}"/>
+				<h:outputText value="Closed" rendered="#{parcel.status eq 'C'}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header"> </f:facet>
+				<h:commandLink  action="#{accountant.approve4Ship(parcel)}" >
+					<h:graphicImage value="resources/image/register.png" height="40" width="40" title="Approve"/>
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</ui:define>
+</ui:composition>	
+</html>
